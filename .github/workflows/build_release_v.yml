@@ -23,7 +23,7 @@ jobs:
           tag: ${{ github.ref_name }}
         with:
           python_ver: '3.10'
-          spec: 'src/build.spec'
+          spec: 'src/main.py'
           upload_exe_with_name: App
           options: --onedir, --name "App", 
           
