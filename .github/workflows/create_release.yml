@@ -2,7 +2,9 @@ name: Create release
 
 on:
   push:
-
+    tags:
+      - v*
+      
 permissions:
   contents: write
 
@@ -15,7 +17,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
           GITHUB_REPOSITORY: ${{ github.repository }}
-          tag: v1
+          tag: ${{ github.ref_name }}
         run: |
           gh release create "$tag" \
               --repo="${{ github.repository }}" \
