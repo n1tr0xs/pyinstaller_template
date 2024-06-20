@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: App
+          name: App.zip
           path: app/
       - name: Display structure of downloaded files
         run: ls app/
@@ -52,5 +52,5 @@ jobs:
         run: |
       - name: Upload asset
         run: |
-          gh release upload ${tag} App \
+          gh release upload ${tag} app/App.zip \
           --repo="${GITHUB_REPOSITORY}" \
