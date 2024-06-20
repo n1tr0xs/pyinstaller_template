@@ -14,6 +14,8 @@ env:
   
 jobs:
   pyinstaller-build:
+    outputs:
+      executable_path: ${{ steps.step1.outputs.executable_path }}
     name: Build an app
     runs-on: windows-latest
     steps:
@@ -24,14 +26,6 @@ jobs:
           spec: 'src/build.spec'
           upload_exe_with_name: $GITHUB_REPOSITORY
           
-  echoing:
-    name: Echoing
-    runs-on: ubuntu-22.04
-    needs: pyinstaller-build
-    steps:
-      - name: Echoing outputs from pybuild
-        run: |
-          echo "${{ jobs.pyinstaller-build.outputs }}"
           
   release:    
     name: Create release
