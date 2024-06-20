@@ -40,5 +40,5 @@ jobs:
               --generate-notes
       - name: Upload asset
         run: |
-          gh release upload ${tag} "${{ job.pyinstaller-build.executable_path }}"\
+          gh release upload ${tag} "${{ job.pyinstaller-build.outputs.executable_path }}"\
           --repo="${GITHUB_REPOSITORY}" \
