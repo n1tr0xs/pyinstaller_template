@@ -10,13 +10,10 @@ permissions:
 
 jobs:
   pyinstaller-build:
-    outputs:
-      executable_path: ${{ steps.step1.outputs.executable_path }}
     name: Build an app
     runs-on: windows-latest
     steps:
       - name: Create Executable
-        id: step1
         uses: sayyid5416/pyinstaller@v1
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -24,7 +21,7 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/App.spec'
-          upload_exe_with_name: App
+          upload_exe_with_name: App.zip
           options: --contents-directory "."
           
   release:    
@@ -38,7 +35,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: App
+          name: App.zip
           path: app/
       - name: Display structure of downloaded files
         run: ls app/
@@ -52,5 +49,5 @@ jobs:
         run: |
       - name: Upload asset
         run: |
-          gh release upload ${tag} app/App \
+          gh release upload ${tag} app/App.zip \
           --repo="${GITHUB_REPOSITORY}" \
