@@ -21,7 +21,7 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/App.spec'
-          upload_exe_with_name: App.zip
+          upload_exe_with_name: App
           
   release:    
     name: Create release
@@ -34,8 +34,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: App.zip
-          path: app/
+          name: App
+          path: .
       - name: Display structure of downloaded files
         run: ls -R app/
       - name: Create release
@@ -46,7 +46,8 @@ jobs:
               --generate-notes
       - name: Archive assets
         run: |
+          zip -r App.zip App
       - name: Upload asset
         run: |
-          gh release upload ${tag} app/App.zip \
+          gh release upload ${tag} App.zip \
           --repo="${GITHUB_REPOSITORY}" \
