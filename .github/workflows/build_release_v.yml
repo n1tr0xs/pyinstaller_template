@@ -25,7 +25,7 @@ jobs:
           python_ver: '3.10'
           spec: 'src/build.spec'
           upload_exe_with_name: App
-          options: --onefile, --name "App", 
+          options: --onedir, --name "App", 
           
   release:    
     name: Create release
@@ -39,15 +39,17 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: App
-          path: .
+          path: app/
       - name: Display structure of downloaded files
-        run: ls .
+        run: ls app/
       - name: Create release
         run: |
           gh release create "$tag" \
               --repo="${GITHUB_REPOSITORY}" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
+      - name: Archive assets
+        run: |
       - name: Upload asset
         run: |
           gh release upload ${tag} App \
