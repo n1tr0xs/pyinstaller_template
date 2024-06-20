@@ -32,7 +32,7 @@ jobs:
           upload_exe_with_name: ${GITHUB_REPOSITORY}
       - name: files check
         run: |
-          ls "${{ step1.outputs.executable_path }}"
+          ls "${{ build-and-release.outputs.executable_path }}"
       - name: Create release
         run: |
           gh release create "$tag" \
@@ -41,5 +41,5 @@ jobs:
               --generate-notes
       - name: Upload asset
         run: |
-          gh release upload ${tag} "${{ step1.outputs.executable_path }}/${GITHUB_REPOSITORY}" \
+          gh release upload ${tag} "${{ build-and-release.outputs.executable_path }}/${GITHUB_REPOSITORY}" \
           --repo="${GITHUB_REPOSITORY}" \
