@@ -25,9 +25,10 @@ jobs:
           upload_exe_with_name: ${GITHUB_REPOSITORY}
           options: --onefile, --name "My App", --windowed
           
-  release:
+  release:    
     name: Create release
     runs-on: ubuntu-22.04
+    needs: pyinstaller-build
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
