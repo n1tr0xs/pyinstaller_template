@@ -8,10 +8,6 @@ on:
 permissions:
   contents: write
 
-env:
-  GITHUB_REPOSITORY: ${{ github.repository }}
-  tag: ${{ github.ref_name }}
-  
 jobs:
   pyinstaller-build:
     outputs:
@@ -22,6 +18,9 @@ jobs:
       - name: Create Executable
         id: step1
         uses: sayyid5416/pyinstaller@v1
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          tag: ${{ github.ref_name }}
         with:
           python_ver: '3.10'
           spec: 'src/build.spec'
@@ -33,6 +32,8 @@ jobs:
     needs: pyinstaller-build
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      tag: ${{ github.ref_name }}
     steps:
       - name: Create release
         run: |
@@ -42,5 +43,5 @@ jobs:
               --generate-notes
       - name: Upload asset
         run: |
-          gh release upload ${tag} "${{ needs.pyinstaller-build.outputs.executable_path }}\\${$GITHUB_REPOSITORY}" \
+          gh release upload ${tag} "${{ needs.pyinstaller-build.outputs.executable_path }}\\${GITHUB_REPOSITORY}" \
           --repo="${GITHUB_REPOSITORY}" \
