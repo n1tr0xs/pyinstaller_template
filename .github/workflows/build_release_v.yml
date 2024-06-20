@@ -41,7 +41,7 @@ jobs:
           name: App
           path: .
       - name: Display structure of downloaded files
-        run: ls -R your/destination/dir
+        run: ls .
       - name: Create release
         run: |
           gh release create "$tag" \
