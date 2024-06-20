@@ -22,7 +22,7 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/main.py'
-          upload_exe_with_name: ${GITHUB_REPOSITORY}
+          upload_exe_with_name: $GITHUB_REPOSITORY
           options: --onefile, --name "My App", --windowed
           
   release:    
