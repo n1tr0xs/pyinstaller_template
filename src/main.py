@@ -1,1 +1,3 @@
-my_tag = 'v1.2'
+'''
+This is test of pushing v3.0 tag
+'''
