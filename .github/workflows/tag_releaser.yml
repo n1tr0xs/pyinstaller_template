@@ -37,7 +37,7 @@ jobs:
           path: .
       - name: Create release
         run: |
-          gh release create "Release ${tag}" \
+          gh release create "${tag}" \
               --repo="${GITHUB_REPOSITORY}" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
@@ -46,5 +46,5 @@ jobs:
           zip -r ${APP_NAME}.zip ${APP_NAME}
       - name: Upload asset
         run: |
-          gh release upload "Release v${tag}" ${APP_NAME}.zip \
+          gh release upload "${tag}" ${APP_NAME}.zip \
           --repo="${GITHUB_REPOSITORY}" \
