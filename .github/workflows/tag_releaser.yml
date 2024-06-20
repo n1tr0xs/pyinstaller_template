@@ -37,7 +37,7 @@ jobs:
           path: .
       - name: Create release
         run: |
-          gh release create "Release $tag" \
+          gh release create "Release ${tag}" \
               --repo="${GITHUB_REPOSITORY}" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
