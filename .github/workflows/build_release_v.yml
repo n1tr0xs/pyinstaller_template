@@ -21,9 +21,9 @@ jobs:
         uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.10'
-          spec: 'src/main.py'
+          spec: 'src/buld.spec'
           upload_exe_with_name: $GITHUB_REPOSITORY
-          options: --onefile, --name "My App", --windowed
+          
           
   release:    
     name: Create release
