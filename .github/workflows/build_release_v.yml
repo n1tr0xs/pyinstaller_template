@@ -25,9 +25,8 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/build.spec'
-          upload_exe_with_name: $GITHUB_REPOSITORY
-          
-          
+          upload_exe_with_name: ${GITHUB_REPOSITORY}
+                    
   release:    
     name: Create release
     runs-on: ubuntu-22.04
@@ -43,5 +42,5 @@ jobs:
               --generate-notes
       - name: Upload asset
         run: |
-          gh release upload ${tag} "${{ needs.pyinstaller-build.outputs.executable_path }}"\
+          gh release upload ${tag} "${{ needs.pyinstaller-build.outputs.executable_path }}\\${$GITHUB_REPOSITORY}" \
           --repo="${GITHUB_REPOSITORY}" \
