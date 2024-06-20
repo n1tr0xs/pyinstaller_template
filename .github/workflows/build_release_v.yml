@@ -25,7 +25,8 @@ jobs:
           python_ver: '3.10'
           spec: 'src/build.spec'
           upload_exe_with_name: App
-                  
+          options: --onefile, --name "App", 
+          
   release:    
     name: Create release
     runs-on: ubuntu-22.04
@@ -39,6 +40,8 @@ jobs:
         with:
           name: App
           path: .
+      - name: Display structure of downloaded files
+        run: ls -R your/destination/dir
       - name: Create release
         run: |
           gh release create "$tag" \
