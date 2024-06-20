@@ -1,5 +1,6 @@
 '''
 This is test of pushing v4.0 tag
 '''
-print('Test')
-input()
+
+if __name__ == '__main__':
+    print('Hello world!')
