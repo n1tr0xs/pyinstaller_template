@@ -41,6 +41,7 @@ jobs:
               --repo="${GITHUB_REPOSITORY}" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
+              --title="${APP_NAME} v${tag}"
       - name: Archive builded app
         run: |
           zip -r ${APP_NAME}.zip ${APP_NAME}
