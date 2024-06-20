@@ -24,7 +24,7 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/build.spec'
-          upload_exe_with_name: App.exe
+          upload_exe_with_name: App
                   
   release:    
     name: Create release
@@ -35,6 +35,10 @@ jobs:
       GITHUB_REPOSITORY: ${{ github.repository }}
       tag: ${{ github.ref_name }}
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: App
+          path: .
       - name: Create release
         run: |
           gh release create "$tag" \
@@ -43,5 +47,5 @@ jobs:
               --generate-notes
       - name: Upload asset
         run: |
-          gh release upload ${tag} "${{ needs.pyinstaller-build.outputs.executable_path }}/${GITHUB_REPOSITORY}" \
+          gh release upload ${tag} App \
           --repo="${GITHUB_REPOSITORY}" \
