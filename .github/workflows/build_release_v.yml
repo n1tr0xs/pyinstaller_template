@@ -8,17 +8,12 @@ on:
 permissions:
   contents: write
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_REPOSITORY: ${{ github.repository }}
-  tag: ${{ github.ref_name }}
-      
 jobs:
-  build-and-release:
+  pyinstaller-build:
     outputs:
       executable_path: ${{ steps.step1.outputs.executable_path }}
     name: Build an app
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
       - name: Create Executable
         id: step1
@@ -30,9 +25,19 @@ jobs:
           python_ver: '3.10'
           spec: 'src/build.spec'
           upload_exe_with_name: ${GITHUB_REPOSITORY}
+                  
+  release:    
+    name: Create release
+    runs-on: ubuntu-22.04
+    needs: pyinstaller-build
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      tag: ${{ github.ref_name }}
+    steps:
       - name: files check
         run: |
-          ls "${{ build-and-release.outputs.executable_path }}"
+          ls "${{ needs.pyinstaller-build.outputs.executable_path }}"
       - name: Create release
         run: |
           gh release create "$tag" \
@@ -41,5 +46,5 @@ jobs:
               --generate-notes
       - name: Upload asset
         run: |
-          gh release upload ${tag} "${{ build-and-release.outputs.executable_path }}/${GITHUB_REPOSITORY}" \
+          gh release upload ${tag} "${{ needs.pyinstaller-build.outputs.executable_path }}/${GITHUB_REPOSITORY}" \
           --repo="${GITHUB_REPOSITORY}" \
