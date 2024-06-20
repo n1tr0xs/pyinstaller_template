@@ -23,13 +23,9 @@ jobs:
           tag: ${{ github.ref_name }}
         with:
           python_ver: '3.10'
-          spec: 'src/main.py'
+          spec: 'src/build.spec'
           upload_exe_with_name: ${GITHUB_REPOSITORY}
-          options: --name "App" --onefile
-      - name: Check dir
-        run: |
-          dir /S
-                    
+                  
   release:    
     name: Create release
     runs-on: ubuntu-22.04
