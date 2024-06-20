@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Release tag
 
 on:
   push:
@@ -9,6 +9,7 @@ permissions:
   contents: write
 
 env:
+  APP_NAME: 'App'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
   tag: ${{ github.ref_name }}
@@ -21,8 +22,8 @@ jobs:
       - uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.10'
-          spec: 'src/App.spec'
-          upload_exe_with_name: App
+          spec: 'src/build.spec'
+          upload_exe_with_name: ${APP_NAME}
           
   release:    
     name: Create release
@@ -32,7 +33,7 @@ jobs:
       - name: Download builded app
         uses: actions/download-artifact@v4
         with:
-          name: App
+          name: ${APP_NAME}
           path: .
       - name: Create release
         run: |
@@ -40,10 +41,10 @@ jobs:
               --repo="${GITHUB_REPOSITORY}" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
-      - name: Archive assets
+      - name: Archive builded app
         run: |
-          zip -r App.zip App
+          zip -r ${APP_NAME}.zip ${APP_NAME}
       - name: Upload asset
         run: |
-          gh release upload ${tag} App.zip \
+          gh release upload ${tag} ${APP_NAME}.zip \
           --repo="${GITHUB_REPOSITORY}" \
