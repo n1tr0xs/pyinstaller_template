@@ -8,16 +8,17 @@ on:
 permissions:
   contents: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_REPOSITORY: ${{ github.repository }}
+  tag: ${{ github.ref_name }}
+      
 jobs:
   pyinstaller-build:
     name: Build an app
     runs-on: windows-latest
     steps:
-      - name: Create Executable
-        uses: sayyid5416/pyinstaller@v1
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          tag: ${{ github.ref_name }}
+      - uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.10'
           spec: 'src/App.spec'
@@ -27,17 +28,12 @@ jobs:
     name: Create release
     runs-on: ubuntu-22.04
     needs: pyinstaller-build
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_REPOSITORY: ${{ github.repository }}
-      tag: ${{ github.ref_name }}
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download builded app
+        uses: actions/download-artifact@v4
         with:
           name: App
           path: .
-      - name: Display structure of downloaded files
-        run: ls -R app/
       - name: Create release
         run: |
           gh release create "$tag" \
