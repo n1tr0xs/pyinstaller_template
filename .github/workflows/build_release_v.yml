@@ -22,7 +22,6 @@ jobs:
           python_ver: '3.10'
           spec: 'src/App.spec'
           upload_exe_with_name: App.zip
-          options: --contents-directory "."
           
   release:    
     name: Create release
@@ -38,7 +37,7 @@ jobs:
           name: App.zip
           path: app/
       - name: Display structure of downloaded files
-        run: ls app/
+        run: ls -R app/
       - name: Create release
         run: |
           gh release create "$tag" \
