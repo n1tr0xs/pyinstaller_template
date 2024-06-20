@@ -24,7 +24,7 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/build.spec'
-          upload_exe_with_name: ${GITHUB_REPOSITORY}
+          upload_exe_with_name: App.exe
                   
   release:    
     name: Create release
@@ -35,9 +35,6 @@ jobs:
       GITHUB_REPOSITORY: ${{ github.repository }}
       tag: ${{ github.ref_name }}
     steps:
-      - name: files check
-        run: |
-          ls "${{ needs.pyinstaller-build.outputs.executable_path }}"
       - name: Create release
         run: |
           gh release create "$tag" \
