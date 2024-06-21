@@ -2,6 +2,9 @@ name: Test
 
 on: push
 
+env:
+  APP_NAME: "App"
+
 jobs:
   job1:
     name: Create release
@@ -9,5 +12,5 @@ jobs:
     steps:
       - name: Echoing
         run: |
-          echo "${GITHUB_REPOSITORY#*/}"
+          echo "${APP_NAME}"
           
