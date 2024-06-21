@@ -3,7 +3,7 @@ name: Test
 on: push
 
 env:
-  APP_NAME: ${GITHUB_REPOSITORY#*/}
+  APP_NAME: ${github.repository#*/}
 
 jobs:
   job1:
