@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: Python Style Checker
         uses: andymckay/pycodestyle-action@0.1.3
+        with: 
+          file: 'src/main.py'
