@@ -39,7 +39,7 @@ jobs:
         run: |
           gh release create "${tag}" \
               --repo="${GITHUB_REPOSITORY}" \
-              --title="${APP_NAME} ${tag}"
+              --title="${APP_NAME} ${tag}" \
               --generate-notes
       - name: Archive builded app
         run: |
