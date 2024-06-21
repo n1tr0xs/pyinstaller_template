@@ -4,8 +4,9 @@ on: push
 
 jobs:
   job1:
-    - runs-on: ubu
-    - steps:
+    name: Create release
+    runs-on: ubuntu-22.04
+    steps:
       - name: Echoing
         run: |
           echo "${GITHUB_REPOSITORY#*/}"
