@@ -1,0 +1,10 @@
+name: PEP8 check
+
+on:
+  push
+
+jobs:
+  pep8-check:
+    steps:
+      - name: Python Style Checker
+        uses: andymckay/pycodestyle-action@0.1.3
