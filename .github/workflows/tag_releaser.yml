@@ -8,8 +8,7 @@ on:
 permissions:
   contents: write
 
-env:
-  APP_NAME: ${{ GITHUB_REPOSITORY#*/ }}
+env:  
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
   tag: ${{ github.ref_name }}
@@ -23,7 +22,7 @@ jobs:
         with:
           python_ver: '3.10'
           spec: 'src/build.spec'
-          upload_exe_with_name: ${APP_NAME}
+          upload_exe_with_name: App
           
   release:    
     name: Create release
@@ -33,7 +32,7 @@ jobs:
       - name: Download builded app
         uses: actions/download-artifact@v4
         with:
-          name: ${APP_NAME}
+          name: App
           path: .
       - name: Create release
         run: |
@@ -43,8 +42,8 @@ jobs:
               --generate-notes
       - name: Archive builded app
         run: |
-          zip -r ${APP_NAME}.zip ${APP_NAME}
+          zip -r "${GITHUB_REPOSITORY#*/}.zip" App
       - name: Upload asset
         run: |
-          gh release upload "${tag}" ${APP_NAME}.zip \
+          gh release upload "${tag}" "${GITHUB_REPOSITORY#*/}.zip" \
           --repo="${GITHUB_REPOSITORY}" \
