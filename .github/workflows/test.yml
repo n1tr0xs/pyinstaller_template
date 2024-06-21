@@ -1,0 +1,12 @@
+name: Test
+
+on: push
+
+jobs:
+  job1:
+    - runs-on: ubu
+    - steps:
+      - name: Echoing
+        run: |
+          echo "${GITHUB_REPOSITORY#*/}"
+          
