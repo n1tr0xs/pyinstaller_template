@@ -5,6 +5,7 @@ on:
 
 jobs:
   pep8-check:
+    runs-on: ubuntu-22.04
     steps:
       - name: Python Style Checker
         uses: andymckay/pycodestyle-action@0.1.3
