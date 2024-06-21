@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 env:
-  APP_NAME: ${GITHUB_REPOSITORY#*/}
+  APP_NAME: ${{ GITHUB_REPOSITORY#*/ }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
   tag: ${{ github.ref_name }}
