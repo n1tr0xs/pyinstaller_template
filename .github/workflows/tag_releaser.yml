@@ -12,7 +12,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
   tag: ${{ github.ref_name }}
-  app_name: "Pyinstaller test"
+  app_name: "pyinstaller_template"
       
 jobs:
   pyinstaller-build:
