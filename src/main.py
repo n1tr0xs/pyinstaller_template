@@ -4,8 +4,6 @@ Main source file
 
 
 def main():
-    '''
-    '''
     return
 
 
