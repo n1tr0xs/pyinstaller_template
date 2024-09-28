@@ -1,5 +1,5 @@
 '''
-This is test of pushing v4.0 tag
+This is test of pushing v5.0 tag
 '''
 
 if __name__ == '__main__':
