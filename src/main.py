@@ -1,6 +1,11 @@
 '''
-This is test of pushing v5.0 tag
+Main source file
 '''
 
+
+def main():
+    ...
+
+
 if __name__ == '__main__':
-    print('Hello world!')
+    main()
