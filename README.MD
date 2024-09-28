@@ -1,5 +1,9 @@
 # Pyinstaller template
 
+## How to use:
+1. Copy tag_release.yml to your repo.
+2. `build.spec` must be in repo root directory.
+3. `requirements.txt` must be in repo root directory (either empty or not).
 
 ## Mainloop:
 1. Push commits
