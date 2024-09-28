@@ -1,8 +1,7 @@
 # Pyinstaller template
 
 ## How to use:
-1. Set `env.app_name`:
-  - `app_name` must be same as in `build.spec`.
+1. Set `env.app_name` (`app_name` must be same as in `build.spec`).
 2. `build.spec` must be in `src` folder.
 3. `requirements.txt` (create empty file if u don't have requirements) must be in repo root directory.
 
