@@ -22,7 +22,7 @@ jobs:
       - uses: sayyid5416/pyinstaller@v1
         with:
           python_ver: '3.10'
-          spec: 'src/main.py'
+          spec: 'src/pyinstaller_template.spec'
           requirements: 'requirements.txt'
           options: --onedir, --contents-directory ".", --name "${{ env.app_name }}"
           upload_exe_with_name: ${{ env.app_name }}
