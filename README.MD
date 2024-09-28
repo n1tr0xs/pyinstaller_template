@@ -7,10 +7,11 @@
 
 ## Mainloop:
 1. Push commits
-2. Create abd push tag
+2. Create and push tag
 ```
 git tag -f <tagname> && git push origin <tagname>
 ```
+-----
 Fast tag repush:
 ```
 git push origin :<tagname> & git tag -f <tagname> & git push -f origin <tagname>
