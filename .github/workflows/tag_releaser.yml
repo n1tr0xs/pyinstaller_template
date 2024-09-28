@@ -24,7 +24,7 @@ jobs:
           python_ver: '3.10'
           spec: 'src/main.py'
           requirements: 'requirements.txt'
-          options: --onedir, --name ${{ env.app_name }}}, --noconsole
+          options: --onedir, --name ${{ env.app_name }}, --noconsole
           upload_exe_with_name: ${{ env.app_name }}
           
   release:    
