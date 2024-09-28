@@ -12,7 +12,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
   tag: ${{ github.ref_name }}
-  app_name: "TicTacToe"
+  app_name: "Pyinstaller test"
       
 jobs:
   pyinstaller-build:
@@ -24,7 +24,7 @@ jobs:
           python_ver: '3.10'
           spec: 'src/main.py'
           requirements: 'requirements.txt'
-          options: --onedir, --name ${{ env.app_name }}, --noconsole
+          options: --onedir, --contents-directory ".", --noconsole, --name "${{ env.app_name }}"
           upload_exe_with_name: ${{ env.app_name }}
           
   release:    
