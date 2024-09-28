@@ -35,12 +35,9 @@ jobs:
         with:
           name: "App"
           path: .
-      - name: LS
-        run: |
-          ls .
       - name: Archive builded app
         run: |
-          zip -r "${GITHUB_REPOSITORY#*/}.zip" "${GITHUB_REPOSITORY#*/}"
+          zip -r "${GITHUB_REPOSITORY#*/}.zip" main
       - name: Create release
         run: |
           gh release create "${tag}" \
