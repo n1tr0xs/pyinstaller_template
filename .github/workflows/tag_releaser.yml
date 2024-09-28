@@ -12,7 +12,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.repository }}
   tag: ${{ github.ref_name }}
-  exe_name: "${GITHUB_REPOSITORY#*/}"
       
 jobs:
   pyinstaller-build:
@@ -24,7 +23,7 @@ jobs:
           python_ver: '3.10'
           spec: 'build.spec'
           requirements: 'requirements.txt'
-          upload_exe_with_name: "${exe_name}"
+          upload_exe_with_name: "App"
           
   release:    
     name: Create release
@@ -34,11 +33,8 @@ jobs:
       - name: Download builded app
         uses: actions/download-artifact@v4
         with:
-          name: "${exe_name}"
+          name: "App"
           path: .
-      - name: LS
-        run: |
-          ls .
       - name: Archive builded app
         run: |
           zip -r "${GITHUB_REPOSITORY#*/}.zip" "${GITHUB_REPOSITORY#*/}"
