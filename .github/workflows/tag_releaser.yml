@@ -36,15 +36,18 @@ jobs:
         with:
           name: "${exe_name}"
           path: .
+      - name: LS
+        run: |
+          ls .
+      - name: Archive builded app
+        run: |
+          zip -r "${GITHUB_REPOSITORY#*/}.zip" "${GITHUB_REPOSITORY#*/}"
       - name: Create release
         run: |
           gh release create "${tag}" \
               --repo="${GITHUB_REPOSITORY}" \
               --title="${GITHUB_REPOSITORY#*/} ${tag}" \
               --generate-notes
-      - name: Archive builded app
-        run: |
-          zip -r "${GITHUB_REPOSITORY#*/}.zip" "${GITHUB_REPOSITORY#*/}"
       - name: Upload asset
         run: |
           gh release upload "${tag}" "${GITHUB_REPOSITORY#*/}.zip" \
