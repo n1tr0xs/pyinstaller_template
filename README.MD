@@ -1,6 +1,8 @@
 # Pyinstaller template
 
 ## How to use:
+### 1) Create your repo using this as template
+### 2):
 1. Copy tag_release.yml to your repo.
 3. All source code files must be in src directory.
 2. `build.spec`, `requirements.txt`(either empty or not) must be in repo root directory.
