@@ -2,8 +2,8 @@
 
 ## How to use:
 1. Copy tag_release.yml to your repo.
-2. `build.spec` must be in repo root directory.
-3. `requirements.txt` must be in repo root directory (either empty or not).
+3. All source code files must be in src directory.
+2. `build.spec`, `requirements.txt`(either empty or not) must be in repo root directory.
 
 ## Mainloop:
 1. Push commits

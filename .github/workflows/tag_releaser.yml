@@ -26,7 +26,7 @@ jobs:
           upload_exe_with_name: "App"
           
   release:    
-    name: Create release
+    name: Publish release
     runs-on: ubuntu-22.04
     needs: pyinstaller-build
     steps:
@@ -35,6 +35,9 @@ jobs:
         with:
           name: "App"
           path: .
+      - name: LS
+        run: |
+          ls .
       - name: Archive builded app
         run: |
           zip -r "${GITHUB_REPOSITORY#*/}.zip" "${GITHUB_REPOSITORY#*/}"
